@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.grocery.dao.ProductMapper">
+
+<!-- 선택한 종류의 아이템 불러오기 -->
+<select id="selectProduct" parameterType="String" resultType="ProductVO">
+	SELECT
+		pro_id
+	    , pro_company
+	    , pro_name
+	    , pro_note
+	    , pro_stock
+	    , pro_price
+	    , pro_saleprice
+	FROM
+		pro_tb
+	WHERE
+		pro_id LIKE #{type} || '%' AND pro_stock != 0
+	ORDER BY
+		pro_stock DESC
+</select>
+
+<update id="updateProduct" parameterType="basketlistVO">
+	UPDATE pro_tb
+	SET
+		pro_stock = #{pro_stock}
+	WHERE
+		pro_id=#{pro_id}
+</update>
+
+<update id="saleProduct" parameterType="basketlistVO">
+	UPDATE pro_tb
+	SET
+		pro_stock = pro_stock-#{bas_num}
+	WHERE
+		pro_id=#{pro_id}
+</update>
+
+<update id="rollbackProduct" parameterType="basketlistVO">
+	UPDATE pro_tb
+	SET
+		pro_stock = pro_stock+#{bas_num}
+	WHERE
+		pro_id=#{pro_id}
+</update>
+
+<select id="checkProduct" parameterType="basketlistVO" resultType="int">
+	SELECT
+		pro_stock
+	FROM
+		pro_tb
+	WHERE
+		pro_id=#{pro_id}
+</select>
+
+
+<select id="checkBasket" parameterType="BasketVO" resultType="BasketVO">
+	SELECT
+		acc_id
+		, pro_id
+		, bas_num
+	FROM
+		bas_tb
+	WHERE
+		acc_id = #{acc_id} AND pro_id=#{pro_id}
+</select>
+
+<insert id="createBasket" parameterType="BasketVO">
+	INSERT INTO bas_tb
+	(
+		acc_id
+		, pro_id
+		, bas_num
+	)
+	VALUES
+	(
+		#{acc_id}
+		, #{pro_id}
+		, #{bas_num}
+	)
+</insert>
+
+<update id="updateBasket" parameterType="BasketVO">
+	UPDATE bas_tb
+	SET
+		bas_num = #{bas_num}
+	WHERE
+		acc_id = #{acc_id} AND pro_id=#{pro_id}
+</update>
+
+<delete id="deleteBasket" parameterType="BasketVO">
+	DELETE bas_tb
+	WHERE
+		acc_id = #{acc_id} AND pro_id=#{pro_id}
+</delete>
+
+<select id="totalBasket" parameterType="String" resultType="int">
+	SELECT
+		nvl(SUM(bas_num),0)
+	FROM
+		bas_tb
+	WHERE
+		acc_id = #{acc_id}
+</select>
+
+<select id="basketList" parameterType="String" resultType="basketlistVO">
+	SELECT
+		b.pro_id
+        , p.pro_name
+        , p.pro_price
+        , p.pro_saleprice
+        , p.pro_stock
+        , b.bas_num
+	FROM
+		bas_tb b, pro_tb p
+	WHERE
+		b.pro_id = p.pro_id AND b.acc_id = #{acc_id}
+</select>
+
+<select id="basketPrice" parameterType="String" resultType="int">
+	SELECT
+        (nvl(f.a,0)+nvl(s.b,0)) as result
+    FROM
+        (SELECT
+            SUM(p.pro_saleprice*b.bas_num) as a
+        FROM
+            bas_tb b, pro_tb p
+        WHERE
+            b.pro_id = p.pro_id AND b.acc_id = #{acc_id})f,
+        (SELECT
+            SUM(p.pro_price*b.bas_num) as b
+        FROM
+            bas_tb b, pro_tb p
+        WHERE
+            b.pro_id = p.pro_id AND p.pro_saleprice=0 AND b.acc_id = #{acc_id})s
+</select>
+
+<delete id="basketReset" parameterType="String">
+	DELETE bas_tb
+	WHERE
+		acc_id = #{acc_id}
+</delete>
+</mapper>
