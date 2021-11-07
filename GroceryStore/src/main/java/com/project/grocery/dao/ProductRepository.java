@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.grocery.vo.BasketVO;
 import com.project.grocery.vo.BasketlistVO;
+import com.project.grocery.vo.OrderVO;
 import com.project.grocery.vo.ProductVO;
 
 @Repository
@@ -197,7 +198,58 @@ public class ProductRepository {
 		}
 		return result;
 	}
-
+	
+	//주문서 아이디 체크
+	public int checkOrderseq() {
+		ProductMapper mapper = session.getMapper(ProductMapper.class);
+		int result = 0;
+		try {
+			result = mapper.checkOrderseq();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	//주문서 만들기
+	public int createOrder(OrderVO order) {
+		ProductMapper mapper = session.getMapper(ProductMapper.class);
+		int result = 0;
+		try {
+			result = mapper.createOrder(order);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+		
+	//주문서 입력
+	public int insertOrder(OrderVO order) {
+		ProductMapper mapper = session.getMapper(ProductMapper.class);
+		int result = 0;
+		try {
+			result = mapper.insertOrder(order);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+		
+	//주문서 확인
+	public int confirmOrder(int ord_id) {
+		ProductMapper mapper = session.getMapper(ProductMapper.class);
+		int result = 0;
+		try {
+			result = mapper.confirmOrder(ord_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 
 }

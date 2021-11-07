@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.grocery.dao.ProductRepository;
 import com.project.grocery.vo.BasketlistVO;
+import com.project.grocery.vo.OrderVO;
 
 @Controller
 public class BasketController {
@@ -101,38 +102,21 @@ public class BasketController {
 
 		repository.basketReset(acc_id);
 		
-		//주문서 txt파일로 출력
-		LocalDateTime nowDate = LocalDateTime.now();
-		String date = nowDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH.MM.ss"));
-		
-		String textData = acc_name+"님의 주문서입니다.\n";
-		textData += "주소 : "+acc_address+"\n";
-		textData += "==================================\n";
-		
+		//주문서 만들기
+		//1.주문서 시퀀스 번호 체크
+		int ord_id = repository.checkOrderseq();
+		//2.주문서 생성
+		OrderVO temp = new OrderVO();
+		temp.setOrd_id(ord_id);
+		temp.setAcc_id(acc_id);
+		repository.createOrder(temp);
+		//3.주문 리스트 넣기
 		for(BasketlistVO item : result) {
-			textData += "고유번호 : "+item.getPro_id()+"\n";
-			textData += "이름 : "+item.getPro_name()+"\n";
-			textData += "개수 : "+item.getBas_num()+"\n";
-			textData += "-------------------\n";
+			temp.setPro_id(item.getPro_id());
+			temp.setBas_num(item.getBas_num());
+			repository.insertOrder(temp);
 		}
-		
-		FileOutputStream out = null;
-		try {
-			out = new FileOutputStream("c:\\Temp\\"+date+".txt");
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			out.write(textData.getBytes());
-			out.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
 		message = "구매처리되었습니다";
 		model.addAttribute("message",message);
 		

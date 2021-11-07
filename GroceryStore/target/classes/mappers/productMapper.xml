@@ -143,4 +143,46 @@
 	WHERE
 		acc_id = #{acc_id}
 </delete>
+
+<select id="checkOrderseq" resultType="int">
+	SELECT ord_seq.nextval 
+	FROM dual
+</select>
+
+<insert id="createOrder" parameterType="OrderVO">
+	INSERT INTO ord_tb
+	(
+		ord_id
+		, acc_id
+	)
+	VALUES
+	(
+		#{ord_id}
+		, #{acc_id}
+	)
+</insert>
+
+<insert id="insertOrder" parameterType="OrderVO">
+	INSERT INTO ord_con_tb
+	(
+		ord_id
+		, pro_id
+		, bas_num
+	)
+	VALUES
+	(
+		#{ord_id}
+		, #{pro_id}
+		, #{bas_num}
+	)
+</insert>
+
+<update id="confirmOrder" parameterType="int">
+	UPDATE ord_tb
+	SET
+		ord_con = TRUE
+	WHERE
+		ord_id = #{ord_id}
+</update>
+
 </mapper>

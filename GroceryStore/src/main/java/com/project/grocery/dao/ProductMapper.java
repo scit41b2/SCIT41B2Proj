@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.project.grocery.vo.BasketVO;
 import com.project.grocery.vo.BasketlistVO;
+import com.project.grocery.vo.OrderVO;
 import com.project.grocery.vo.ProductVO;
 
 public interface ProductMapper {
@@ -38,11 +39,23 @@ public interface ProductMapper {
 	public int updateProduct(BasketlistVO item) throws Exception;
 
 	//물품판매
-	public int saleProduct(BasketlistVO item);
+	public int saleProduct(BasketlistVO item) throws Exception;
 	
 	//물품판매취소
-	public int rollbackProduct(BasketlistVO item);
+	public int rollbackProduct(BasketlistVO item) throws Exception;
 
 	//물품재고 체크
-	public int checkProduct(BasketlistVO item);
+	public int checkProduct(BasketlistVO item) throws Exception;
+	
+	//주문서 아이디 체크
+	public int checkOrderseq() throws Exception;
+	
+	//주문서 만들기
+	public int createOrder(OrderVO order) throws Exception;
+	
+	//주문서 입력
+	public int insertOrder(OrderVO order) throws Exception;
+	
+	//주문서 확인
+	public int confirmOrder(int ord_id) throws Exception;
 }

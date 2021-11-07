@@ -1,6 +1,8 @@
+DROP TABLE ord_con_tb;
+DROP TABLE bas_tb;
+DROP TABLE ord_tb;
 DROP TABLE pro_tb;
 DROP TABLE acc_tb;
-DROP TABLE bas_tb;
 
 CREATE TABLE acc_tb
 (
@@ -27,6 +29,23 @@ CREATE TABLE bas_tb
     , pro_id varchar2(20) REFERENCES pro_tb(pro_id)
     , bas_num number DEFAULT 0
 );
+
+CREATE TABLE ord_tb
+(
+    ord_id number PRIMARY KEY
+    , ord_date date DEFAULT SYSDATE
+    , ord_con number DEFAULT 0
+    , acc_id varchar2(20) REFERENCES acc_tb(acc_id)
+);
+
+CREATE TABLE ord_con_tb
+(
+    ord_id number REFERENCES ord_tb(ord_id)
+    , pro_id varchar2(20) REFERENCES pro_tb(pro_id)
+    , bas_num number DEFAULT 0
+);
+
+CREATE SEQUENCE ord_seq;
 
 INSERT INTO pro_tb
 VALUES
