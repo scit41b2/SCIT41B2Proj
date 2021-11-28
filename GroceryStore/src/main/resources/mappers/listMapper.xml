@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.grocery.dao.ListMapper">
+
+<select id="orderTable" parameterType="String" resultType="OrderTableVO">
+SELECT
+	ord_id
+	, to_char(ord_date, 'YYYY-MM-DD') as ordDate
+FROM
+	ORD_TB
+WHERE
+	acc_id = #{acc_id}
+ORDER BY
+	ord_id
+</select>
+
+<select id="orderList" parameterType="String" resultType="OrderlistVO">
+SELECT
+	b.pro_id
+	, p.pro_name
+    , b.ord_id
+    , b.bas_num
+FROM
+	ord_con_tb b, pro_tb p
+WHERE
+	b.pro_id = p.pro_id AND 
+	b.ord_id in
+	<foreach collection="list" index="index" item="ord_id" open='(' close=')' separator=','>
+		#{ord_id} <!-- 정수형 어레이리스트 값과 일치하는 주문번호만 검색 -->
+	</foreach>
+ORDER BY
+	b.ord_id
+</select>
+
+
+<select id="orderTotal" parameterType="int" resultType="OrderVO">
+SELECT
+	ord_id
+	, pro_id
+	, bas_num
+FROM
+	ord_con_tb
+WHERE
+	ord_id = #{ord_id}
+</select>
+
+<select id="proTotal" resultType="ProductVO">
+SELECT
+	pro_id
+	, pro_price
+	, pro_saleprice
+FROM
+	pro_tb
+</select>
+
+</mapper>
