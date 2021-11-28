@@ -58,4 +58,10 @@ public interface ProductMapper {
 	
 	//주문서 확인
 	public int confirmOrder(int ord_id) throws Exception;
+
+	//상품 아이디 체크
+	public int checkProductseq() throws Exception;
+	
+	//상품 추가
+	public int adminAdd(ProductVO product) throws Exception;
 }
