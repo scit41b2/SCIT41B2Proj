@@ -17,6 +17,9 @@ $(function(){
 	$(".cart_box").on('click',function(){
 		location.href='basket';
 	});
+	$(".icon_list").on('click',function(){
+		location.href='list';
+	});
 	$(".pro_add").on('click',add);
 });
 
@@ -81,6 +84,11 @@ function check(){
                     </c:if>
                 </div>
         	</c:forEach>       
+            </div>
+            <div class="list_box">
+            	<div class="list">
+            		<img class="icon_list" src="images/basket.png">
+            	</div>
             </div>
             <div class="cart_box">
                 <div class="basket">

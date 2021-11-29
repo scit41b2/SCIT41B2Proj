@@ -8,10 +8,13 @@
 		<typeAlias type="com.project.grocery.vo.ProductVO" alias="ProductVO" />
 		<typeAlias type="com.project.grocery.vo.BasketVO" alias="BasketVO" />
 		<typeAlias type="com.project.grocery.vo.OrderVO" alias="OrderVO" />
+		<typeAlias type="com.project.grocery.vo.OrderlistVO" alias="OrderlistVO" />
+		<typeAlias type="com.project.grocery.vo.OrderTableVO" alias="OrderTableVO" />
 		<typeAlias type="com.project.grocery.vo.BasketlistVO" alias="BasketlistVO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/memberMapper.xml" />
 		<mapper resource="mappers/productMapper.xml" />
+		<mapper resource="mappers/listMapper.xml" />
 	</mappers>
 </configuration>
