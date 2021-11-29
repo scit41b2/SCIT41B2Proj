@@ -32,7 +32,7 @@
 			<mapping path="/basket"/>
 			<mapping path="/purchase"/>
 			<mapping path="/add"/>
-			
+			<mapping path="/list"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>
