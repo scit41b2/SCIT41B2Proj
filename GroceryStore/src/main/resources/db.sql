@@ -1,3 +1,6 @@
+DROP SEQUENCE ord_seq;
+DROP SEQUENCE pro_seq;
+
 DROP TABLE ord_con_tb;
 DROP TABLE bas_tb;
 DROP TABLE ord_tb;
@@ -46,6 +49,7 @@ CREATE TABLE ord_con_tb
 );
 
 CREATE SEQUENCE ord_seq;
+CREATE SEQUENCE pro_seq START WITH 10;
 
 INSERT INTO pro_tb
 VALUES

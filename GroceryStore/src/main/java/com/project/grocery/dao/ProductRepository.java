@@ -250,6 +250,31 @@ public class ProductRepository {
 		}
 		return result;
 	}
+	
+	//상품 아이디 체크
+	public int checkProductseq() {
+		ProductMapper mapper = session.getMapper(ProductMapper.class);
+		int result = 0;
+		try {
+			result = mapper.checkProductseq();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	//상품 추가
+	public int adminAdd(ProductVO product) {
+		ProductMapper mapper = session.getMapper(ProductMapper.class);
+		int result = 0;
+		try {
+			result = mapper.adminAdd(product);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 
 }

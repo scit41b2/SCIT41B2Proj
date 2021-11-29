@@ -185,4 +185,23 @@
 		ord_id = #{ord_id}
 </update>
 
+<select id="checkProductseq" resultType="int">
+	SELECT pro_seq.nextval 
+	FROM dual
+</select>
+
+<insert id="adminAdd" parameterType="ProductVO">
+	INSERT INTO pro_tb
+	VALUES
+	(
+	    #{pro_id}
+	    , #{pro_company}
+	    , #{pro_name}
+	    , #{pro_note}
+	    , #{pro_stock}
+	    , #{pro_price}
+	    , #{pro_saleprice}
+	)
+</insert>
+
 </mapper>

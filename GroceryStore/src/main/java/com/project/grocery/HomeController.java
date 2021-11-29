@@ -1,9 +1,11 @@
 package com.project.grocery;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,10 @@ public class HomeController {
 	
 	//생선코너
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model, HttpSession session) {
+
+		String admin = "admin";
+		if(admin.equals((String) session.getAttribute("loginId"))) return "admin";
 		List<ProductVO> result = repository.selectProduct("fish");
 		System.out.println(result);
 		model.addAttribute("list",result);
