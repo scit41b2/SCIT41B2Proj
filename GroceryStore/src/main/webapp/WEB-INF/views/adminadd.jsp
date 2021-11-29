@@ -79,6 +79,12 @@ function tovertify(){
 		return false;
 	}
 	
+	if($('#pro_pic').val()==''){
+		$('#pro_pic_ver_exp').html('사진을 선택해주세요');
+		return false;
+	}
+	
+	
 	let pro_note = $('#pro_note').val().trim();
 	if(pro_note=='') $('#pro_note').val(' ');
 	
@@ -112,7 +118,7 @@ function highlight_off(boxid){
             <div class="login_intro">
                 상품추가
             </div>
-            <form id="proform" method="post" action="adminadd" autocomplete="off">
+            <form id="proform" method="post" action="adminadd" enctype="multipart/form-data" autocomplete="off">
             <div class="login_input_box">
                 <p class="input_exp">회사이름</p>
                 <div class="input_type_box" id="input_pro_company_box">
@@ -144,6 +150,11 @@ function highlight_off(boxid){
                     <input class="input_type" type="number" id="pro_saleprice" name="pro_saleprice"><br>
                 </div>
                 <p class="input_exp input_ver_exp" id="pro_saleprice_ver_exp">&nbsp;</p>
+                <p class="input_exp">상품사진</p>
+                <div class="input_type_box" id="input_pro_pic_box">
+                    <input type="file" id="pro_pic" name="pro_pic"><br>
+                </div>
+                <p class="input_exp input_ver_exp" id="pro_pic_ver_exp">&nbsp;</p>
             </div>
             <p class="input_exp input_ver_exp">${message}</p>
             <div class="button" id="admin_add">
