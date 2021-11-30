@@ -276,5 +276,52 @@ public class ProductRepository {
 		return result;
 	}
 
+	public List<ProductVO> adminProMan() {
+		ProductMapper mapper = session.getMapper(ProductMapper.class);
+		List<ProductVO> result = null;
+		try {
+			result = mapper.adminProMan();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int adminProStop(String id) {
+		ProductMapper mapper = session.getMapper(ProductMapper.class);
+		int result = 0;
+		try {
+			result = mapper.adminProStop(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public ProductVO adminProCheck(String pro_id) {
+		ProductMapper mapper = session.getMapper(ProductMapper.class);
+		ProductVO result = null;
+		try {
+			result = mapper.adminProCheck(pro_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int adminProChange(ProductVO product) {
+		ProductMapper mapper = session.getMapper(ProductMapper.class);
+		int result = 0;
+		try {
+			result = mapper.adminProChange(product);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 }
