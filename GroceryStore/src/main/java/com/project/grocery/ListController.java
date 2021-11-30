@@ -26,7 +26,6 @@ public class ListController {//구매정보 조회용 컨트롤러
 	@RequestMapping("/list")//구매정보 조회 페이지로 이동
 	public String login(HttpSession session, Model model) {
 		String acc_id  = (String) session.getAttribute("loginId"); //세션 아이디 추출
-		System.out.println(acc_id);
 		List<OrderTableVO> orList = repository.orderTable(acc_id); //ORD_TB 검색
 		List<Integer> numList = new ArrayList<>(); //정수 어레이리스트 선언
 		

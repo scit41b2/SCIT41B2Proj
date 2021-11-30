@@ -16,6 +16,4 @@ public interface ListMapper { //구매정보 조회용 매퍼
 	public List<OrderVO> orderTotal(int ord_id) throws Exception; //ORD_CON_TB 검색
 
 	public List<ProductVO> proTotal() throws Exception; //Product 검색
-
-	public List<OrderTableVO> adminOrder() throws Exception; //ORD_TB 전체
 }

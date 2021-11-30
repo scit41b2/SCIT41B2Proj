@@ -35,7 +35,7 @@ function cal(ordid){ //계산
 </head>
 <body>
     <div class="wrapper">
-        <div class="main_box" id="content_box">
+        <div class="main_box">
             <div class="login_intro">
                 주문 목록
             </div>
@@ -44,7 +44,7 @@ function cal(ordid){ //계산
 	            <!-- 펼쳤다 접기 기능 span태그에 장착 -->
 	            
 	            <div id="or_table${ord.ord_id}" style="display:none">
-		            <table id="or_table" style="margin-left:auto; margin-right:auto;">
+		            <table id="or_table">
 		                <tr>
 		                    <td id="or_top_img">상품사진</td>
 		                    <td id="or_top_nam">상품명</td>
@@ -54,7 +54,7 @@ function cal(ordid){ //계산
 		             <c:choose>
 		              	<c:when test="${ord.ord_id == pro.ord_id}"> <!-- 해당 주문번호 일치 상품 체크 -->
 							<tr id="or_row_${pro.pro_id}">
-								<td><img class="pro_image" src="image/${pro.pro_id}.jpg"></td>
+								<td><img class="pro_image" src="images/product/${pro.pro_id}.jpg"></td>
 								<td>${pro.pro_name}</td>
 					            <td id="or_num_${pro.pro_id}">${pro.bas_num}</td>
 							</tr>
