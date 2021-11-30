@@ -21,6 +21,7 @@ public class FileService {
 		if(!upload.isEmpty()) {
 			File path = new File(uploadPath);
 
+			System.out.println(uploadPath);
 			if(!path.isDirectory()) {
 				path.mkdirs();
 			}
@@ -37,6 +38,7 @@ public class FileService {
 			}
 
 			savedFilename = pro_id + "." + ext;
+			System.out.println(savedFilename);
 			// 업로드된 파일을 HDD에 저장
 			// 디렉토리명 + 파일명
 			File serverFile = null;
@@ -70,26 +72,6 @@ public class FileService {
 			delFile.delete();
 			result = true;
 		}
-		
-		return result;
-	}
-	
-	public static boolean checkFile(String pro_id, String uploadPath) {
-		boolean result = false;
-		
-		File cheFile = new File(uploadPath+"/"+pro_id+".jpg");
-		if(cheFile.isFile()) {
-			result = true;
-		}
-		
-		return result;
-	}
-	
-	public static boolean changeFile(MultipartFile upload, String pro_id, String uploadPath) {
-		boolean result = false;
-		
-		result = deleteFile(uploadPath+"/"+pro_id+".jpg");
-		saveFile(upload,pro_id,uploadPath);
 		
 		return result;
 	}

@@ -73,7 +73,7 @@ function check(){
                         <img class="icon_plus" src="images/plus.png">
                     </div>
                     <div class="pro_box">
-                        <img class="pro_image" src="image/${pro.pro_id}.jpg">
+                        <img class="pro_image" src="images/product/${pro.pro_id}.jpg">
                         <div class="pro_title">${pro.pro_name}</div>
                     </div>
                     <c:if test="${pro.pro_saleprice!=0}">
@@ -85,7 +85,11 @@ function check(){
                 </div>
         	</c:forEach>       
             </div>
-
+            <div class="list_box">
+            	<div class="list">
+            		<img class="icon_list" src="images/basket.png">
+            	</div>
+            </div>
             <div class="cart_box">
                 <div class="basket">
                     <img class="icon_basket" src="images/basket.png">

@@ -10,10 +10,13 @@
 <script>
 $(function(){
 	$("#adminadd").on('click',function(){
-		location.href='adminproman';
+		location.href='adminadd';
 	});
-	$("#adminorder").on('click',function(){
-		location.href='adminorder';
+	$("#admin_cha").on('click',function(){
+		location.href='admin_cha';
+	});
+	$("#admin_ord").on('click',function(){
+		location.href='admin_ord';
 	});
 	$("#logout").on('click',function(){
 		location.href='logout';
@@ -28,9 +31,12 @@ $(function(){
                 관리자
             </div>
             <div class="button" id="adminadd">
-                상품관리
+                상품추가
             </div>
-            <div class="button" id="adminorder">
+            <div class="button" id="admin_cha">
+                상품수정
+            </div>
+            <div class="button" id="admin_ord">
                 주문내역 확인
             </div>
             <div class="button" id="logout">

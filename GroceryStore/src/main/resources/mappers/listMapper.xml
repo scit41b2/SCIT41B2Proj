@@ -56,15 +56,4 @@ FROM
 	pro_tb
 </select>
 
-<select id="adminOrder" resultType="OrderTableVO">
-SELECT
-	ord_id
-	, to_char(ord_date, 'YYYY-MM-DD') as ordDate
-	, acc_id
-FROM
-	ORD_TB
-ORDER BY
-	ord_id
-</select>
-
 </mapper>
