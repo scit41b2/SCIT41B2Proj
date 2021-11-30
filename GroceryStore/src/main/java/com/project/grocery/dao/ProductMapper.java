@@ -64,4 +64,16 @@ public interface ProductMapper {
 	
 	//상품 추가
 	public int adminAdd(ProductVO product) throws Exception;
+
+	//상품 리스트 확인
+	public List<ProductVO> adminProMan() throws Exception;
+
+	//판매 중단
+	public int adminProStop(String id) throws Exception;
+
+	//상품 확인
+	public ProductVO adminProCheck(String pro_id) throws Exception;
+	
+	//상품 수정
+	public int adminProChange(ProductVO product) throws Exception;
 }

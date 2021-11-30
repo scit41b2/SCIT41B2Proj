@@ -4,16 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자</title>
+<title>마이페이지</title>
 <link rel="stylesheet" href="resources/Style.css">
 <script src="resources/js/jquery-3.6.0.min.js"></script>
 <script>
 $(function(){
-	$("#adminadd").on('click',function(){
-		location.href='adminproman';
+	$("#accupdate").on('click',function(){
+		location.href='accupdate';
 	});
-	$("#adminorder").on('click',function(){
-		location.href='adminorder';
+	$("#list").on('click',function(){
+		location.href='list';
+	});
+	$("#home").on('click',function(){
+		let target = '${pageContext.request.contextPath}';
+		location.href=target;
 	});
 	$("#logout").on('click',function(){
 		location.href='logout';
@@ -25,13 +29,16 @@ $(function(){
     <div class="wrapper">
         <div class="main_box">
             <div class="login_intro">
-                관리자
+                마이페이지
             </div>
-            <div class="button" id="adminadd">
-                상품관리
+            <div class="button" id="accupdate">
+                개인정보 업데이트
             </div>
-            <div class="button" id="adminorder">
+            <div class="button" id="list">
                 주문내역 확인
+            </div>
+            <div class="button" id="home">
+                홈으로
             </div>
             <div class="button" id="logout">
                 로그아웃

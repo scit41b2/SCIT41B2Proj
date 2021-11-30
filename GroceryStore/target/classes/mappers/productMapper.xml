@@ -204,4 +204,57 @@
 	)
 </insert>
 
+<select id="adminProMan" resultType="ProductVO">
+	SELECT
+		pro_id
+	    , pro_company
+	    , pro_name
+	    , pro_note
+	    , pro_stock
+	    , pro_price
+	    , pro_saleprice
+	FROM
+		pro_tb
+	ORDER BY
+		pro_id DESC
+</select>
+
+<update id="adminProStop" parameterType="String">
+	UPDATE pro_tb
+	SET
+		pro_stock = 0
+	WHERE
+		pro_id = #{id}
+</update>
+
+<select id="adminProCheck" parameterType="String" resultType="ProductVO">
+	SELECT
+		pro_id
+	    , pro_company
+	    , pro_name
+	    , pro_note
+	    , pro_stock
+	    , pro_price
+	    , pro_saleprice
+	FROM
+		pro_tb
+	WHERE
+		pro_id = #{pro_id}
+	ORDER BY
+		pro_id DESC
+</select>
+
+<update id="adminProChange" parameterType="ProductVO">
+	UPDATE pro_tb
+	SET
+		pro_company = #{pro_company}
+		, pro_name = #{pro_name}
+		, pro_note = #{pro_note}
+	    , pro_stock = #{pro_stock}
+	    , pro_price = #{pro_price}
+	    , pro_saleprice = #{pro_saleprice}
+	WHERE
+		pro_id=#{pro_id}
+</update>
+
 </mapper>

@@ -36,4 +36,16 @@ public class MemberRepository {
 		return result;
 	}
 
+	public int accupdate(MemberVO member) {
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		int result = 0;
+		try {
+			result = mapper.updateMember(member);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

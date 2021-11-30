@@ -33,6 +33,12 @@
 			<mapping path="/purchase"/>
 			<mapping path="/add"/>
 			<mapping path="/list"/>
+			<mapping path="/admin"/>
+			<mapping path="/adminadd"/>
+			<mapping path="/adminorder"/>
+			<mapping path="/adminprochange"/>
+			<mapping path="/adminproman"/>
+			<mapping path="/accupdate"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>

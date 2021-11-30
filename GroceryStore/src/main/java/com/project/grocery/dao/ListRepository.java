@@ -63,6 +63,17 @@ public class ListRepository {//구매정보 조회용 DAO
 		
 		return result;
 	}
+
+	public List<OrderTableVO> adminOrder() {
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		List<OrderTableVO> result = null;
+		try {
+			result = mapper.adminOrder();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 
 }

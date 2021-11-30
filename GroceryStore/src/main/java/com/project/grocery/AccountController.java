@@ -19,8 +19,12 @@ public class AccountController {
 	
 	//로그인 화면
 	@RequestMapping("/login")
-	public String login() {
-		return "login";
+	public String login(HttpSession session) {
+		if(session.getAttribute("loginId")!=null) {
+			return "redirect:/acc";
+		} else {
+			return "login";
+		}
 	}
 	
 	//로그아웃
@@ -35,7 +39,6 @@ public class AccountController {
 	public String login(MemberVO member,Model model,HttpSession session) {
 		
 		MemberVO result = repository.login(member);
-		System.out.println(result);
 		String message = "";
 		if(result==null) {
 			message = "아이디가 없거나 패스워드가 맞지 않습니다";
@@ -47,6 +50,12 @@ public class AccountController {
 			session.setAttribute("loginAdd", result.getAcc_address());
 			return "redirect:/";
 		}
+	}
+	
+	//마이페이지 화면제공
+	@RequestMapping("/acc")
+	public String acc() {
+		return "acc";
 	}
 	
 	//회원가입 화면제공
@@ -68,5 +77,26 @@ public class AccountController {
 			return "redirect:/";
 		}
 		
+	}
+	
+	//개인정보 업데이트 화면제공
+	@RequestMapping("/accupdate")
+	public String accupdate() {
+		return "accupdate";
+	}
+	
+	//개인정보 업데이트 처리
+	@RequestMapping(value="/accupdate",method=RequestMethod.POST)
+	public String accupdate(MemberVO member, Model model) {
+		System.out.println(member);
+		int result = repository.accupdate(member);
+		String message;
+		if(result==0) {
+			message = "처리도중 에러가 발생했습니다.";
+			model.addAttribute("message",message);
+			return "accupdate";
+		} else {
+			return "redirect:/";
+		}	
 	}
 }

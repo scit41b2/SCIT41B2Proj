@@ -37,10 +37,10 @@ function cal(ordid){ //계산
     <div class="wrapper">
         <div class="main_box" id="content_box">
             <div class="login_intro">
-                주문 목록
+                주문내역 확인
             </div>
          <c:forEach var="ord" items="${orList}"> <!-- 주문번호 기준 리스트 출력 -->
-            <span id="listOn${ord.ord_id}" style="CURSOR: hand" onclick="if(or_table${ord.ord_id}.style.display == 'none'){cal(${ord.ord_id}); or_table${ord.ord_id}.style.display=''; listOn${ord.ord_id}.innerText= '접기'} else {or_table${ord.ord_id}.style.display='none';listOn${ord.ord_id}.innerText= '주문번호 : ${ord.ord_id} / 주문 일시 : ${ord.ordDate}'}">주문번호 : ${ord.ord_id} / 주문 일시 : ${ord.ordDate}</span>
+            <span id="listOn${ord.ord_id}" style="CURSOR: hand" onclick="if(or_table${ord.ord_id}.style.display == 'none'){cal(${ord.ord_id}); or_table${ord.ord_id}.style.display=''; listOn${ord.ord_id}.innerText= '접기'} else {or_table${ord.ord_id}.style.display='none';listOn${ord.ord_id}.innerText= '주문번호 : ${ord.ord_id} / 고객ID : ${ord.acc_id} / 주문 일시 : ${ord.ordDate}'}">주문번호 : ${ord.ord_id} / 고객ID : ${ord.acc_id} / 주문 일시 : ${ord.ordDate}</span>
 	            <!-- 펼쳤다 접기 기능 span태그에 장착 -->
 	            
 	            <div id="or_table${ord.ord_id}" style="display:none">
@@ -68,8 +68,9 @@ function cal(ordid){ //계산
 							<td colspan="3" id="total${ord.ord_id}"></td> <!-- 계산값 -->
 						</tr>  
 		            	<tr>
-			        		<td colspan="3">주문번호 : ${ord.ord_id} / 주문 일시 : ${ord.ordDate}의 정보입니다.</td>
+			        		<td colspan="3">주문번호 : ${ord.ord_id} / 고객ID : ${ord.acc_id} / 주문 일시 : ${ord.ordDate}의 정보입니다.</td>
 			        	</tr>
+
 		            </table>
 	            </div>
 <br><br><br>
